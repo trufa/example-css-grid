@@ -1,2 +1,2 @@
 # example-css-grid
-Example css framework for Toptal blog
+Example css grid/framework for Toptal blog
