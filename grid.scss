@@ -12,6 +12,25 @@ $map-grid-props: (
         '-xl': $grid__bp-xl
 );
 
+/**following bootstrap container media queries, initial container has fixed
+container width, while this code is making it flexbile so as to resize
+based on screen size**/
+
+$map-container-props: (
+  $grid__bp-sm,
+  $grid__bp-md,
+  $grid__bp-lg,
+  $grid__bp-xl,
+);
+
+@mixin create-container-class($breakpoint){
+  @include create-mq($breakpoint, 'min'){
+      .container{
+        max-width: $breakpoint *1px;
+      }
+  }
+}
+
 @mixin create-mq($breakpoint, $min-or-max) {
   @if($breakpoint == 0) {
     @content;
@@ -55,7 +74,7 @@ $map-grid-props: (
 }
 
 .container {
-  max-width: $grid__bp-md * 1px;
+  //max-width: $grid__bp-md * 1px;
   margin: 0 auto;
   &--fluid {
     margin: 0;
@@ -70,3 +89,12 @@ $map-grid-props: (
     @include create-col-classes($modifier, $grid__cols, $breakpoint);
   }
 }
+
+@each $breakpoint in $map-container-props{
+  @include create-container-class($breakpoint)
+};
+
+
+
+
+
